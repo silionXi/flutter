@@ -4390,7 +4390,7 @@ class _ElementDiagnosticableTreeNode extends DiagnosticableTreeNode {
 ///  * [FlutterError.reportError], which is typically called with the same
 ///    [FlutterErrorDetails] object immediately prior to [ErrorWidget.builder]
 ///    being called.
-typedef ErrorWidgetBuilder = Widget Function(FlutterErrorDetails details);
+typedef ErrorWidgetBuilder = Widget Function(FlutterErrorDetails details);/// 申明一个方法类型？
 
 /// A widget that renders an exception's message.
 ///
@@ -4624,15 +4624,15 @@ abstract class ComponentElement extends Element {
         _debugDoingBuild = true;
         return true;
       }());
-      built = build();
+      built = build();///执行build方法
       assert(() {
         _debugDoingBuild = false;
         return true;
       }());
       debugWidgetBuilderValue(widget, built);
-    } catch (e, stack) {
+    } catch (e, stack) {///捕获异常
       _debugDoingBuild = false;
-      built = ErrorWidget.builder(
+      built = ErrorWidget.builder(///调用builder方法？返回系统错误页面
         _debugReportException(
           ErrorDescription('building $this'),
           e,
@@ -6269,14 +6269,14 @@ FlutterErrorDetails _debugReportException(
   StackTrace stack, {
   InformationCollector informationCollector,
 }) {
-  final FlutterErrorDetails details = FlutterErrorDetails(
+  final FlutterErrorDetails details = FlutterErrorDetails(///构建错误详情对象
     exception: exception,
     stack: stack,
     library: 'widgets library',
     context: context,
     informationCollector: informationCollector,
   );
-  FlutterError.reportError(details);
+  FlutterError.reportError(details);///报告错误
   return details;
 }
 

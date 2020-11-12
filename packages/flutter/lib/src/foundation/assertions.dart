@@ -1089,7 +1089,12 @@ class FlutterError extends Error with DiagnosticableTreeMixin implements Asserti
     assert(details != null);
     assert(details.exception != null);
     if (onError != null) {
-      onError!(details);
+      /**
+       * onError是FlutterError的一个静态属性。
+       * 它有一个默认的处理方法 dumpErrorToConsole。
+       * 如果我们想自己上报异常，只需要提供一个自定义的错误处理回调即可
+       */
+      onError!(details);///调用了onError回调
     }
   }
 }
